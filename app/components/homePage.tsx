@@ -15,9 +15,8 @@ const HomePage = () => {
     })
 
   const searchData = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setState((prevState) => ({ ...prevState, loading: true }))
-    debugger;
+    e.preventDefault();
+    setState((prevState) => ({ ...prevState, loading: true }));
     const data = await SearchData(state.input);
     const resultData = data.results;
     const summaryData = data.summary.summary_text;

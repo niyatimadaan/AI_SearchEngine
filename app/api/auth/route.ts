@@ -13,8 +13,10 @@ const ENGINE_ID = process.env.ENGINE_ID;
 //   },
 // };
 
-export async function POST(req: NextApiRequest) {
-  const { input } = req.body;
+export async function POST(req: Request) {
+    // console.log(req.json());
+  const { input } = await req.json();
+  console.log(`input at Post req : ${input}`)
   let results = [];
   let linksArray = [];
 

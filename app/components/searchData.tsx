@@ -5,7 +5,9 @@ export async function SearchData(input: string) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({input: input}),
+    body: JSON.stringify({
+      input: input,
+    }),
   });
   const data = await res.json();
   return data;

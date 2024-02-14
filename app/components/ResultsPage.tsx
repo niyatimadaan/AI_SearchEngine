@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 
-interface MyComponentState {
-  input: string;
-  results: never[];
-  resultsUsedToSummarize: never[];
-  summaryText: string;
-  loading: boolean;
-}
-
 interface ResultsPageProps {
   searchData: (e: React.FormEvent<HTMLFormElement>) => void;
   input: string;
-  setState: React.Dispatch<React.SetStateAction<MyComponentState>>;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
   summaryText: string;
   resultsUsedToSummarize: any[];
   results: any[];
@@ -20,7 +12,7 @@ interface ResultsPageProps {
 export default function ResultsPageFunction({
   searchData,
   input,
-  setState,
+  setInput,
   summaryText,
   resultsUsedToSummarize,
   results,
@@ -60,10 +52,7 @@ export default function ResultsPageFunction({
                 value={input}
                 className="w-full ml-5 hover:outline-none focus:outline-none text-lg"
                 onChange={(e) =>
-                  setState((prevState) => ({
-                    ...prevState,
-                    input: e.target.value,
-                  }))
+                  setInput( e.target.value)
                 }
                 onFocus={() => setInputFocused(true)}
                 onBlur={() => setInputFocused(false)}

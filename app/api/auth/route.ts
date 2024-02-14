@@ -20,6 +20,10 @@ export async function POST(req: Request) {
   let results = [];
   let linksArray = [];
 
+  if( input == undefined){
+    return NextResponse.json({ message: "Input Undefined" },{ status: 500 });
+  }
+
   try {
     const response = await axios.get(
       `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${ENGINE_ID}&q=${input}`

@@ -6,8 +6,9 @@ import ResultsPageFunction from './ResultsPage'
 import { SearchData } from './searchData';
 
 const HomePage = () => {
+  const [input,setInput] = useState('');
+
     const [state, setState] = useState({
-        input: '',
         results: [],
         resultsUsedToSummarize: [],
         summaryText: '',
@@ -17,7 +18,7 @@ const HomePage = () => {
   const searchData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setState((prevState) => ({ ...prevState, loading: true }));
-    const data = await SearchData(state.input);
+    const data = await SearchData(input);
     const resultData = data.results;
     const summaryData = data.summary.summary_text;
     const firstFiveResults = resultData.slice(0, 5);
@@ -37,9 +38,9 @@ const HomePage = () => {
         )
         }
         {!state.results ? (
-          <SearchBar searchData={searchData} input={state.input} setState={setState} />
+          <SearchBar searchData={searchData} input={input} setInput={setInput} />
         ) : (
-          <ResultsPageFunction searchData={searchData} input={state.input} setState={setState} summaryText={state.summaryText} resultsUsedToSummarize={state.resultsUsedToSummarize} results={state.results} />
+          <ResultsPageFunction searchData={searchData} input={input} setInput={setInput} summaryText={state.summaryText} resultsUsedToSummarize={state.resultsUsedToSummarize} results={state.results} />
         )
         }
       </div >

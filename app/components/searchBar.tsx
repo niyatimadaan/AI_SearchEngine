@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 
-interface MyComponentState {
-  input: string;
-  results: never[];
-  resultsUsedToSummarize: never[];
-  summaryText: string;
-  loading: boolean;
-}
-
 interface SearchBarProps {
   searchData: (e: React.FormEvent<HTMLFormElement>) => void;
   input: string;
-  setState: React.Dispatch<React.SetStateAction<MyComponentState>>;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   searchData,
   input,
-  setState,
+  setInput,
 }) => {
   const [inputFocused, setInputFocused] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState((prevState) => ({ ...prevState, input: e.target.value }));
+    setInput(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -9,7 +9,7 @@ interface ResultsPageProps {
   results: any[];
 }
 
-export function ResultsPage({
+export default function ResultsPage({
   searchData,
   input,
   setInput,
@@ -89,12 +89,12 @@ export function ResultsPage({
         </div>
       </div>
       </div>
-      <div className="text-mytext flex-1 h-full flex justify-between gap-5 mt-4">
+      <div className="text-mytext flex-1 h-full flex justify-between gap-2 mt-4 mb-2 px-2">
         {resultsUsedToSummarize.map((result, index) => (
           <a
             key={index}
             href={result.link}
-            className="flex-1 flex flex-col h-64 bg-darkBG rounded-lg shadow-lg w-36"
+            className="flex-1 flex flex-col h-64 rounded-lg w-36 p-2 border border-solid border-gray-300 block bg-white"
           >
             <div className="flex-1 flex flex-col h-64 bg-darkBG rounded-lg shadow-lg">
               <div className="h-32">

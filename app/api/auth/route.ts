@@ -1,15 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { NextResponse } from "next/server";
-import ScrapePage from "./scrapePage";
-import RequestSummary from "./requestFile";
+import Summarize from "../../../lib/summarize";
+import Scrape from "../../../lib/scrape";
 
 const API_KEY = process.env.GOOGLE_API;
 const ENGINE_ID = process.env.ENGINE_ID;
 
 export async function POST(req: Request) {
   const { input } = await req.json();
-  console.log(`input at Post req : ${input}`)
   let results = [];
   let linksArray = [];
 
@@ -31,7 +30,6 @@ export async function POST(req: Request) {
         }
       }
     }
-    console.log("Got links");
   } catch (err) {
     return NextResponse.json(
       { message: "Error in fetching data" },
@@ -44,20 +42,18 @@ export async function POST(req: Request) {
   await Promise.all(
     linksArray.map(async (url) => {
       try {
-        const scrapedData = await ScrapePage(url);
-        const response = await RequestSummary(scrapedData);
+        const scrapedData = await Scrape(url);
+        const response = await Summarize(scrapedData);
         const individualSummary = response.summary_text;
         individualSummaries.push(individualSummary);
-        console.log(`Got individual summary for ${url}`);
       } catch (error) {
         console.error(`Error in processing ${url}: ${error}`);
       }
     })
   );
   const concatenatedText = individualSummaries.join(" ");
-  console.log("Got individual summaries");
   try {
-    const summary = await RequestSummary(concatenatedText);
+    const summary = await Summarize(concatenatedText);
     return NextResponse.json({ summary, results }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

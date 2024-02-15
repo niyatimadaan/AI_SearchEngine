@@ -1,11 +1,8 @@
-// Import the required modules from Playwright
 import { chromium, Browser, Page } from 'playwright';
 
-// Define the type for the URL parameter
 type Url = string;
 
-// Define the scraper function
-export default async function ScrapePage (url: Url): Promise<string> {
+export default async function Scrape (url: Url): Promise<string> {
   const browser: Browser = await chromium.launch();
   const page: Page = await browser.newPage();
   await page.goto(url);
@@ -23,6 +20,3 @@ export default async function ScrapePage (url: Url): Promise<string> {
 
   return concatenatedText;
 }
-
-// Export the function
-//  default ScrapePage;

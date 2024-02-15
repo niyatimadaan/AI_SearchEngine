@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from "react";
-import SearchBar from "./searchBar";
-import { SearchData } from "./searchData";
-import { ResultsPage } from "./showResultsPage";
-import LoadingOverlay from "./loading";
+import SearchData from "@/lib/searchData";
+import ResultsPage from "./ResultsPage";
+import LoadingOverlay from "./LoadingOverlay";
+import SearchBar from "@/components/SearchBar";
 
-const HomePage = () => {
+export default function HomePage () {
   const [input,setInput] = useState('');
 
   const [state, setState] = useState({
@@ -19,10 +19,12 @@ const HomePage = () => {
   const searchData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setState((prevState) => ({ ...prevState, loading: true }));
+    
     const data = await SearchData(input);
     const resultData = data.results;
     const summaryData = data.summary.summary_text;
     const startingResults = resultData.slice(0, 6);
+
     setState((prevState) => ({
       ...prevState,
       results: resultData,
@@ -30,9 +32,6 @@ const HomePage = () => {
       summaryText: summaryData,
       loading: false,
     }));
-    debugger;
-    console.log(resultData);
-    console.log(summaryData);
   };
 
   return (
@@ -69,5 +68,3 @@ const HomePage = () => {
     </>
   );
 };
-
-export default HomePage;

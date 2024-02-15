@@ -6,11 +6,11 @@ interface SearchBarProps {
   setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
+export default function SearchBar ({
   searchData,
   input,
   setInput,
-}) => {
+}: SearchBarProps) {
   const [inputFocused, setInputFocused] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,4 +50,3 @@ const SearchBar: React.FC<SearchBarProps> = ({
   );
 };
 
-export default SearchBar;

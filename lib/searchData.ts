@@ -1,6 +1,5 @@
-export async function SearchData(input: string) {
-  console.log(`input : ${input}`);
-  const res = await fetch("../api/auth", {
+export default async function SearchData(input: string) {
+  const res = await fetch("/api/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 # AI Search Engine Project
 
-![Project Image](path_to_project_image)
+![Project Image](\public\App-Screenshot.png)
 
 ## Table of Contents
 
@@ -9,7 +9,6 @@
 - [Components](#components)
 - [Dependencies](#dependencies)
 - [Contribution](#contribution)
-- [License](#license)
 
 ## Features
 

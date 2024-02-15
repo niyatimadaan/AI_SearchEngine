@@ -1,6 +1,6 @@
 # AI Search Engine Project
 
-![Project Image](\public\App-Screenshot.png)
+![Project Image](/public/App-Screenshot.png)
 
 ## Table of Contents
 

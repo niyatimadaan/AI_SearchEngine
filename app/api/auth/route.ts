@@ -8,7 +8,6 @@ const API_KEY = process.env.GOOGLE_API;
 const ENGINE_ID = process.env.ENGINE_ID;
 
 export async function POST(req: Request) {
-    // console.log(req.json());
   const { input } = await req.json();
   console.log(`input at Post req : ${input}`)
   let results = [];
@@ -48,7 +47,6 @@ export async function POST(req: Request) {
         const scrapedData = await ScrapePage(url);
         const response = await RequestSummary(scrapedData);
         const individualSummary = response.summary_text;
-        console.log(individualSummary);
         individualSummaries.push(individualSummary);
         console.log(`Got individual summary for ${url}`);
       } catch (error) {
@@ -56,14 +54,10 @@ export async function POST(req: Request) {
       }
     })
   );
-  console.log("Got scraped data");
   const concatenatedText = individualSummaries.join(" ");
   console.log("Got individual summaries");
-  console.log("Got scraped data");
   try {
     const summary = await RequestSummary(concatenatedText);
-    console.log("Got summary");
-    console.log(summary);
     return NextResponse.json({ summary, results }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

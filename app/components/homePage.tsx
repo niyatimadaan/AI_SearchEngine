@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SearchBar from "./searchBar";
-import ResultsPageFunction from "./ResultsPage";
 import { SearchData } from "./searchData";
 import { ResultsPage } from "./showResultsPage";
 import LoadingOverlay from "./loading";

@@ -78,9 +78,6 @@ export default function ResultsPage({
               </form>
             </div>
           </div>
-          <div className="">
-            <img src="" alt="" className="w-48" />
-          </div>
         </div>
         <div className="mx-6 gap-20">
           <div className="bg-darkBG h-max min-w-52 flex-2 rounded-xl">

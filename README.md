@@ -64,7 +64,6 @@ npm run dev
 The project is composed of several key components:
 
 - **SearchBar**: Renders a search bar and handles user input submission.
-- **SearchData**: Fetches search results from the custom search engine using the Google API.
 - **ResultsPage**: Displays search results and provides navigation to full pages.
 - **LoadingOverlay**: Shows a loading indicator while search results are being retrieved.
 

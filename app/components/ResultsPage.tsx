@@ -39,7 +39,7 @@ export default function ResultsPageFunction({
       <div className="flex items-center gap-10 px-10 pt-5 pb-1">
         <div className="w-full">
           <div
-            className={`w-1/3 bg-white h-12 items-center flex rounded-full ${
+            className={`w-1/3 min-w-52 bg-white h-12 items-center flex rounded-full ${
               inputFocused ? "border border-myBorder" : ""
             } hover:border-myBorder hover:border`}
           >
@@ -84,7 +84,7 @@ export default function ResultsPageFunction({
       </div>
 
       <div className="flex justify-between mx-10 gap-20">
-        <div className="bg-darkBG h-max w-1/3 flex-2 rounded-xl">
+        <div className="bg-darkBG h-max w-1/3 min-w-52 flex-2 rounded-xl">
           <p className="p-3">{summaryText}</p>
         </div>
         <div className="text-mytext flex-1 h-full flex justify-between gap-5">
@@ -92,18 +92,20 @@ export default function ResultsPageFunction({
             <a
               key={index}
               href={result.link}
-              className="flex-1 flex flex-col h-64 bg-darkBG rounded-lg shadow-lg"
+              className="flex-1 flex flex-col h-64 bg-darkBG rounded-lg shadow-lg w-36"
             >
               <div className="flex-1 flex flex-col h-64 bg-darkBG rounded-lg shadow-lg">
                 <div className="h-32">
+                  {result.pagemap && result.pagemap.metatags && (
                   <img
                     src={result.pagemap.metatags[0]["og:image"]}
                     alt=""
                     className="rounded-t-xl w-full h-full"
                   />
+                  )}
                 </div>
-                <h2 className="p-2">{clipTextByWords(result.title, 6)}</h2>
-                <p className="mt-auto p-2">
+                <h2 className="p-2 text-ellipsis overflow-hidden">{clipTextByWords(result.title, 6)}</h2>
+                <p className="mt-auto p-2 text-ellipsis overflow-hidden">
                   {clipDisplayLink(result.displayLink)}
                 </p>
               </div>

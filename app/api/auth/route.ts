@@ -7,12 +7,6 @@ import RequestSummary from "./requestFile";
 const API_KEY = process.env.GOOGLE_API;
 const ENGINE_ID = process.env.ENGINE_ID;
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
-
 export async function POST(req: Request) {
     // console.log(req.json());
   const { input } = await req.json();
@@ -31,7 +25,7 @@ export async function POST(req: Request) {
 
     if (response.status === 200) {
       results = response.data.items;
-      for (let i = 0; i < Math.min(5, results.length); i++) {
+      for (let i = 0; i < Math.min(6, results.length); i++) {
         const obj = results[i];
         if (obj.link) {
           linksArray.push(obj.link);
@@ -70,13 +64,10 @@ export async function POST(req: Request) {
     const summary = await RequestSummary(concatenatedText);
     console.log("Got summary");
     console.log(summary);
-    //   res.status(200).json({ summary, results });
     return NextResponse.json({ summary, results }, { status: 200 });
   } catch (error) {
-    console.log(error);
-    //   res.status(500).json({ message: 'Error in generating summary' });
     return NextResponse.json(
-      { message: "Error in generating summary" },
+      { message: "Error in generating summary : " +error },
       { status: 500 }
     );
   }

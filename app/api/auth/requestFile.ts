@@ -1,5 +1,3 @@
-// Assuming that you have a type for the input data, for example:
-type InputData = string;
 
 // And assuming that the hf.summarization method returns a certain type, for example:
 interface SummaryResult {
@@ -9,9 +7,7 @@ interface SummaryResult {
 
 import { HfInference } from "@huggingface/inference";
 
-// const hf = new HfInference(process.env.HF_ACCESS_TOKEN as string);
-
-export default async function RequestSummary(data: InputData): Promise<SummaryResult> {
+export default async function RequestSummary(data: string): Promise<SummaryResult> {
   const hf = new HfInference(process.env.HF_ACCESS_TOKEN);
   const response = await hf.summarization({
     model: "facebook/bart-large-cnn",

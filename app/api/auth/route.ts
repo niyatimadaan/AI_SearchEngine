@@ -18,12 +18,12 @@ export async function POST(req: Request) {
 
   try {
     const response = await axios.get(
-      `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${ENGINE_ID}&q=${input}`
+      `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${ENGINE_ID}&q=${input}&num=6&fields=items(title,link,displayLink,pagemap/metatags)`
     );
 
     if (response.status === 200) {
       results = response.data.items;
-      for (let i = 0; i < Math.min(6, results.length); i++) {
+      for (let i = 0; i < results.length; i++) {
         const obj = results[i];
         if (obj.link) {
           linksArray.push(obj.link);
